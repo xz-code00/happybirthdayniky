@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7efe1" />
+  <meta name="description" content="Uno scrigno digitale segreto, interattivo ed emozionale creato da Sergio per la sua migliore amica." />
+  <title>Uno scrigno segreto</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="desk-shadows" aria-hidden="true"></div>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="story-progress" id="storyProgress" aria-hidden="true"><span></span></div>
+
+  <section class="lock-screen" id="lockScreen" aria-labelledby="lockTitle">
+    <div class="lock-card" id="lockCard">
+      <button class="lock-stamp" id="lockStamp" type="button" aria-label="Timbro segreto">solo per te</button>
+      <p class="eyebrow">scrigno privato</p>
+      <h1 id="lockTitle">Questo posto non è per tutti.</h1>
+      <p class="lock-subtitle">È stato creato per una persona precisa. Se sei tu, lo saprai.</p>
+
+      <form id="pinForm" class="pin-form" autocomplete="off">
+        <label for="pinInput">PIN segreto</label>
+        <div class="pin-row">
+          <input id="pinInput" name="pin" type="password" inputmode="text" autocomplete="off" placeholder="••••" aria-describedby="pinMessage" />
+          <button type="submit">Apri lo scrigno</button>
+        </div>
+        <p class="pin-message" id="pinMessage" role="status" aria-live="polite"></p>
+      </form>
+      <p class="tiny-note">Non è una serratura vera. È il modo più carino per dire: questo posto è speciale.</p>
+    </div>
+  </section>
+
+  <main class="app" id="mainContent" aria-hidden="true">
+    <audio id="bgMusic" preload="metadata" loop></audio>
+
+    <header class="topbar" aria-label="Controlli dello scrigno">
+      <button class="icon-button" id="prevChapter" type="button" aria-label="Capitolo precedente">←</button>
+      <div class="chapter-meter">
+        <span id="chapterName">Benvenuta</span>
+        <div class="chapter-dots" id="chapterDots" aria-label="Avanzamento capitoli"></div>
+      </div>
+      <button class="music-button" id="musicToggle" type="button" aria-pressed="false">♪ musica</button>
+    </header>
+
+    <section class="unlock-note" id="unlockNote" aria-live="polite">
+      <span class="spark" aria-hidden="true">✦</span>
+      <p>Benvenuta nel tuo piccolo posto segreto. <span data-sender-name>Sergio</span> lo ha creato per ricordarti una cosa semplice: sei importante, più di quanto immagini.</p>
+    </section>
+
+    <div class="stage" id="stage">
+      <section class="chapter active" data-title="Benvenuta" data-chapter="0" aria-labelledby="heroTitle">
+        <div class="chapter-shell hero-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 01</span>
+              <h2>La prima cosa da aprire</h2>
+              <p>Non è un album. Non è un messaggio veloce. È un posto piccolo, fatto per farti fermare un attimo e ricordarti quanto conti.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Rompi il sigillo</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">S</div>
+          </div>
+
+          <div class="chapter-card chapter-content hero-card">
+            <p class="eyebrow">lettera nascosta · diario di ricordi · abbraccio digitale</p>
+            <h1 id="heroTitle"><span data-birthday-text>La mulți ani</span>, <span data-friend-name>amica mia</span></h1>
+            <p class="hero-subtitle">Un piccolo posto segreto creato da <span data-sender-name>Sergio</span> per la sua migliore amica.</p>
+            <p class="typewriter" id="typewriterText" aria-live="polite"></p>
+            <p class="hero-copy">Ci sono persone che entrano nella vita senza fare rumore, poi lentamente diventano presenza, abitudine bella, risata sicura, casa in mezzo al caos.<br />Tu sei una di quelle persone rare: quelle che non occupano solo tempo, ma lasciano luce.</p>
+            <div class="button-row">
+              <button class="primary-btn" type="button" data-next>Inizia davvero</button>
+              <button class="secondary-btn" type="button" id="startMusicFromHero">Attiva la musica</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" data-title="Da quando ci sei tu" data-chapter="1" aria-labelledby="chapterOneTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 02</span>
+              <h2>Da quando ci sei tu</h2>
+              <p>Una busta sulle cose che cambiano piano, senza fare rumore, finché un giorno ti accorgi che sono diventate importanti.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri questa busta</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">✦</div>
+          </div>
+
+          <div class="chapter-card chapter-content">
+            <p class="eyebrow">capitolo 01</p>
+            <h2 id="chapterOneTitle">Da quando ci sei tu</h2>
+            <p class="lead">Non so dire esattamente il momento in cui sei diventata così importante. Forse non succede in un momento solo. Forse succede in tante piccole cose: una risata, un messaggio, una giornata strana, una foto venuta male, una conversazione che resta, un silenzio che non pesa.</p>
+
+            <div class="memory-switcher" aria-label="Quattro cose cambiate da quando ci sei tu">
+              <div class="memory-panel is-visible" id="memoryPanel">
+                <span class="panel-icon" aria-hidden="true">☼</span>
+                <h3>Più leggerezza</h3>
+                <p>Da quando ci sei tu, certe giornate sembrano meno pesanti. Anche quando non cambia nulla fuori, cambia qualcosa dentro.</p>
+              </div>
+              <div class="pill-grid" role="list">
+                <button class="pill active" type="button" data-memory="0">Leggerezza</button>
+                <button class="pill" type="button" data-memory="1">Ricordi</button>
+                <button class="pill" type="button" data-memory="2">Verità</button>
+                <button class="pill" type="button" data-memory="3">Vita</button>
+              </div>
+            </div>
+
+            <blockquote class="center-quote">Non ricordo più bene com’era la mia vita prima che tu diventassi una parte così bella delle mie giornate.</blockquote>
+            <button class="primary-btn" type="button" data-next>Apri il prossimo ricordo</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" data-title="Piccole cose enormi" data-chapter="2" aria-labelledby="chapterTwoTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 03</span>
+              <h2>Piccole cose enormi</h2>
+              <p>Perché le amicizie vere non sono fatte solo di eventi grandi. Spesso sono dettagli minuscoli che restano.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri i biglietti</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">♡</div>
+          </div>
+
+          <div class="chapter-card chapter-content">
+            <p class="eyebrow">capitolo 02</p>
+            <h2 id="chapterTwoTitle">Piccole cose enormi</h2>
+            <p class="lead">Le amicizie vere non sono fatte solo di grandi eventi. Sono fatte di dettagli: frasi dette a caso, risate improvvise, momenti in cui ci si capisce senza spiegare troppo, modi assurdi di prendersi in giro, presenze silenziose che salvano la giornata.</p>
+
+            <div class="timeline-play">
+              <div class="timeline-reader" id="timelineReader" aria-live="polite">
+                <p class="reader-kicker">scegli un biglietto</p>
+                <h3>Apri una piccola cosa enorme</h3>
+                <p>Ogni biglietto contiene un frammento di questo anno e mezzo: cose semplici, ma non piccole.</p>
+              </div>
+              <div class="ticket-grid" id="timelineTickets"></div>
+            </div>
+
+            <button class="primary-btn" type="button" data-next>Continua</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" data-title="Promemoria" data-chapter="3" aria-labelledby="chapterThreeTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 04</span>
+              <h2>Promemoria da tenere</h2>
+              <p>Questa non è una lista di complimenti. È una piccola scorta di verità per quando la testa fa troppo rumore.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri i promemoria</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">✶</div>
+          </div>
+
+          <div class="chapter-card chapter-content">
+            <p class="eyebrow">promemoria da aprire piano</p>
+            <h2 id="chapterThreeTitle">Cose che forse dovresti sentirti dire più spesso</h2>
+            <p class="lead">Premi il bottone e lascia uscire un promemoria alla volta. Non perché tu ne abbia bisogno per forza, ma perché certe verità belle meritano di essere ripetute.</p>
+
+            <article class="affirmation-envelope" aria-live="polite">
+              <span class="wax-seal" aria-hidden="true">✦</span>
+              <p id="affirmationCounter">Promemoria 1 di 8</p>
+              <h3 id="affirmationText">Vali molto più dei giorni in cui ti senti piccola.</h3>
+            </article>
+
+            <div class="button-row">
+              <button class="secondary-btn" type="button" id="prevAffirmation">Indietro</button>
+              <button class="primary-btn" type="button" id="nextAffirmation">Apri il prossimo</button>
+            </div>
+            <button class="ghost-link" type="button" data-next>Ho letto. Vai avanti.</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter letter-chapter" data-title="Giorni difficili" data-chapter="4" aria-labelledby="chapterFourTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 05</span>
+              <h2>Da aprire nei giorni no</h2>
+              <p>Una lettera privata. Di quelle che non servono a risolvere tutto, ma a ricordarti che non sei sola dentro quello che senti.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri la lettera</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">S</div>
+          </div>
+
+          <div class="letter-paper chapter-content private-letter">
+            <span class="paperclip" aria-hidden="true"></span>
+            <button class="hidden-heart" id="hiddenHeart" type="button" aria-label="Cuore nascosto">♡</button>
+            <p class="eyebrow">da rileggere quando serve</p>
+            <h2 id="chapterFourTitle">Per i giorni in cui ti dimentichi di te</h2>
+            <div class="letter-copy" id="letterLines" aria-live="polite"></div>
+            <div class="button-row">
+              <button class="primary-btn" id="revealLetterLine" type="button">Leggi un’altra riga</button>
+              <button class="secondary-btn" type="button" data-next>Vai al manuale</button>
+            </div>
+            <p class="signature" data-sender-name>Sergio</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" data-title="Manuale" data-chapter="5" aria-labelledby="chapterFiveTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 06</span>
+              <h2>Manuale ufficiale</h2>
+              <p>La parte seria? Più o meno. La parte necessaria? Assolutamente sì.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri il regolamento</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">!</div>
+          </div>
+
+          <div class="chapter-card chapter-content playful-card">
+            <p class="eyebrow">regolamento non richiesto</p>
+            <h2 id="chapterFiveTitle">Manuale ufficiale della nostra amicizia</h2>
+            <p class="lead">Regolamento non richiesto, ma assolutamente valido.</p>
+
+            <div class="article-stack" id="manualArticles" aria-live="polite"></div>
+            <div class="button-row">
+              <button class="primary-btn" type="button" id="nextArticle">Mostra un articolo</button>
+              <button class="secondary-btn" type="button" id="chaosStamp">Timbro ufficiale</button>
+            </div>
+
+            <div class="motivation-box">
+              <button class="primary-btn wide" type="button" id="motivationBtn">Genera una motivazione di emergenza</button>
+              <p id="motivationOutput" aria-live="polite">Qui apparirà un piccolo pronto soccorso emotivo.</p>
+            </div>
+            <button class="ghost-link" type="button" data-next>Confermo il regolamento</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" data-title="Indizi" data-chapter="6" aria-labelledby="chapterSixTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 07</span>
+              <h2>Solo piccoli indizi</h2>
+              <p>Poche foto, perché il punto non è mostrare tutto. Il punto è lasciare qualche traccia.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri le polaroid</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">✦</div>
+          </div>
+
+          <div class="chapter-card chapter-content gallery-card">
+            <p class="eyebrow">mini galleria</p>
+            <h2 id="chapterSixTitle">Solo piccoli indizi</h2>
+            <p class="lead">Non serve mettere tutto qui. Alcuni ricordi stanno meglio nelle foto, altri nelle frasi, altri ancora in quel posto strano dove finiscono le cose che non si dimenticano.</p>
+            <p class="helper-text">Tocca una polaroid: alcune cose belle hanno anche un retro.</p>
+            <div class="photo-gallery" id="photoGallery" aria-label="Galleria di sei piccoli indizi"></div>
+            <button class="primary-btn" type="button" data-next>Andiamo al certificato</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter certificate-chapter" data-title="Certificato" data-chapter="7" aria-labelledby="chapterSevenTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 08</span>
+              <h2>Documento quasi ufficiale</h2>
+              <p>Ci sono cose che andrebbero certificate, soprattutto quando qualcuno tende a dimenticarsele.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri il certificato</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">✓</div>
+          </div>
+
+          <div class="certificate chapter-content" id="certificate">
+            <div class="certificate-ribbon" id="certificateRibbon" aria-hidden="true">persona rara</div>
+            <p class="eyebrow">documento quasi ufficiale</p>
+            <h2 id="chapterSevenTitle">Certificato di persona rara</h2>
+            <p>Si certifica che <strong data-friend-name>amica mia</strong> è ufficialmente una persona rara: sensibile, testarda al punto giusto, piena di talento, capace di portare colore, caos, risate e bellezza nella vita di chi ha la fortuna di conoscerla davvero.</p>
+            <dl class="certificate-fields">
+              <div><dt>Nome</dt><dd data-friend-name>amica mia</dd></div>
+              <div><dt>Rilasciato da</dt><dd data-sender-name>Sergio</dd></div>
+              <div><dt>Motivo</dt><dd>amicizia fuori scala</dd></div>
+              <div><dt>Qualità principali</dt><dd>cuore grande, talento vero, presenza luminosa</dd></div>
+              <div><dt>Validità</dt><dd>per sempre</dd></div>
+              <div><dt>Clausola speciale</dt><dd>nei giorni in cui se lo dimentica, questo certificato resta comunque valido</dd></div>
+            </dl>
+            <div class="button-row print-hidden">
+              <button class="primary-btn" type="button" id="printCertificateBtn">Stampa o salva il certificato</button>
+              <button class="secondary-btn" type="button" data-next>Continua</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" data-title="Ammirazione" data-chapter="8" aria-labelledby="chapterEightTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 09</span>
+              <h2>Cose che ammiro</h2>
+              <p>Una piccola costellazione. Ogni stella dice qualcosa che forse dovresti sentirti dire più spesso.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Accendi le stelle</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">✦</div>
+          </div>
+
+          <div class="chapter-card chapter-content admiration-card">
+            <p class="eyebrow">cose vere</p>
+            <h2 id="chapterEightTitle">Cose che ammiro di te</h2>
+            <p class="lead">Ammirare una persona non significa pensare che sia perfetta. Significa vedere il modo in cui prova, cade, sente, crea, resiste e continua.</p>
+            <div class="constellation" id="admirationConstellation"></div>
+            <div class="admiration-output" id="admirationOutput" aria-live="polite">
+              <p>Tocca una stellina: ognuna contiene una cosa che <span data-sender-name>Sergio</span> ammira di te.</p>
+            </div>
+            <button class="primary-btn" type="button" data-next>Apri la capsula finale</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter capsule-chapter" data-title="Capsula" data-chapter="9" aria-labelledby="chapterNineTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">busta 10</span>
+              <h2>Capsula del tempo</h2>
+              <p>Tre biglietti piccoli da portare via. Non promesse enormi: cose semplici, realistiche, vere.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri la capsula</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">⌁</div>
+          </div>
+
+          <div class="chapter-card chapter-content capsule">
+            <p class="eyebrow">capsula del tempo</p>
+            <h2 id="chapterNineTitle">Tre cose da portare via</h2>
+            <p class="lead">Prima dell’ultima lettera, solo tre cose semplici. Non promesse enormi. Presenze piccole, realistiche, vere.</p>
+            <div class="capsule-grid">
+              <button class="capsule-note" type="button" data-capsule="0">Quando ti sembra di essere troppo</button>
+              <button class="capsule-note" type="button" data-capsule="1">Quando ti senti indietro</button>
+              <button class="capsule-note" type="button" data-capsule="2">Quando la giornata pesa</button>
+            </div>
+            <div class="capsule-output" id="capsuleOutput" aria-live="polite">Scegli un biglietto.</div>
+            <button class="primary-btn" type="button" data-next>L’ultima cosa</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter final-chapter" data-title="Ultima cosa" data-chapter="10" aria-labelledby="chapterTenTitle">
+        <div class="chapter-shell">
+          <div class="chapter-cover" data-cover>
+            <div class="envelope-piece back"></div>
+            <div class="envelope-paper">
+              <span class="cover-kicker">ultima busta</span>
+              <h2>L’ultima cosa</h2>
+              <p>Questa è la parte più importante. Aprila piano, senza fretta.</p>
+              <button class="primary-btn seal-btn" type="button" data-open-cover>Apri l’ultima lettera</button>
+            </div>
+            <div class="envelope-piece flap"></div>
+            <div class="wax" aria-hidden="true">S</div>
+          </div>
+
+          <div class="chapter-card chapter-content final-letter story-letter">
+            <p class="eyebrow">l’ultimo capitolo</p>
+            <h2 id="chapterTenTitle">L’ultima cosa, poi ti lascio al tuo compleanno</h2>
+            <div id="finalLetter" class="final-letter-body" aria-live="polite"></div>
+            <div class="button-row">
+              <button class="primary-btn" id="revealFinalLine" type="button">Continua a leggere</button>
+              <button class="secondary-btn" type="button" id="restartStory">Riapri dall’inizio</button>
+            </div>
+            <p class="big-signature" data-sender-name>Sergio</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer-note">
+      <p>Creato con cura, ricordi e un po’ di codice da <span data-sender-name>Sergio</span>.</p>
+      <button class="footer-star" id="footerStar" type="button" aria-label="Stellina segreta">✦</button>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="sparkle-layer" id="sparkleLayer" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
